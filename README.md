@@ -5,6 +5,8 @@ Line-Following Robot Project
     // Based on the Arduino connections shown 1n the handout.
     // Note that pins 11 (PWMA) and 5 (PWMB) are both Arduino PWM pins.
     // Note:   We will only use motor A in this lab
+    
+    
 const int AIN1  = 9;
 const int AIN2  = 10;
 const int PWMA  = 11;
