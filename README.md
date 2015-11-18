@@ -1,12 +1,9 @@
-# 2.678
-Line-Following Robot Project
-/ 2.678 - Lab 10: Motor Speed Control Template
+
+    // 2.678 - Lab 10: Motor Speed Control Template
     // Global declarations (accessible to all functions).
     // Based on the Arduino connections shown 1n the handout.
     // Note that pins 11 (PWMA) and 5 (PWMB) are both Arduino PWM pins.
     // Note:   We will only use motor A in this lab
-    
-    
 const int AIN1  = 9;
 const int AIN2  = 10;
 const int PWMA  = 11;
@@ -44,7 +41,20 @@ void loop(){
   Serial.print("L = ");Serial.print(sensorLeft);
   Serial.print(" M = ");Serial.print(sensorMiddle);
   Serial.print(" R = ");Serial.println(sensorRight);
-  delay(500);
+  delay(10);
+  forward(50);
+  if (sensorLeft < 250 && sensorMiddle < 250){
+    ctr_lt(50);
+  } 
+  if (sensorRight < 250 && sensorMiddle < 250){
+    ctr_rt(50);
+  }
+  if (sensorLeft < 250){
+    left(50);
+  }
+  if (sensorRight < 250){
+    right(50);
+  }
   // the following will test you function using motor A
   
   
@@ -73,5 +83,30 @@ void motorWrite(int motorSpeed, int xIN1, int xIN2, int PWMx)
     analogWrite(PWMx, motorSpeed);
 }
 
-void 
+void forward(int spd){
+
+  motorWrite(spd, AIN1, AIN2, PWMA);
+  motorWrite(spd, BIN1, BIN2, PWMB);
+
+}
+
+void left(int spd){
+  motorWrite(0, AIN1, AIN2, PWMA);
+  motorWrite(spd, BIN1, BIN2,PWMB);
+}
+
+void right(int spd){
+  motorWrite(spd, AIN1, AIN2, PWMA);
+  motorWrite(0, BIN1, BIN2,PWMB);
+}
+
+void ctr_rt(int spd){
+  motorWrite(spd, AIN1, AIN2, PWMA);
+  motorWrite(-spd, BIN1, BIN2,PWMB);
+}
+
+void ctr_lt(int spd){
+  motorWrite(spd, AIN1, AIN2, PWMA);
+  motorWrite(-spd, BIN1, BIN2,PWMB);
+}
 
